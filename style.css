@@ -1,54 +1,277 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-  font-family: Arial, sans-serif;
-  background:#141414;
-  color:white;
-  margin:0;
-  padding:0;
+    font-family:'Poppins', sans-serif;
+    background:#141414;
+    color:white;
+    overflow-x:hidden;
 }
 
 header{
-  background:#e50914;
-  padding:30px;
-  text-align:center;
+
+    height:360px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.92)
+        ),
+        url('img/netflix-bg.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    color:white;
+
+    position:relative;
+    overflow:hidden;
 }
+
+
+header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    background:rgba(229,9,20,0.12);
+
+    border-radius:50%;
+
+    top:-200px;
+    right:-200px;
+
+    filter:blur(100px);
+}
+
+
+header::after{
+
+    content:"";
+
+    width:120px;
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #E50914,
+        #ff4d4d
+    );
+
+    border-radius:50px;
+
+    margin-top:30px;
+
+    box-shadow:0 0 15px rgba(229,9,20,0.7);
+}
+
+
 
 header h1{
-  margin:0;
-  color:white;
-  font-size:40px;
+
+    font-size:4.5rem;
+    font-weight:900;
+
+    margin-bottom:15px;
+
+    color:white;
+
+    letter-spacing:1px;
+
+    text-shadow:
+        0 5px 15px rgba(0,0,0,0.5),
+        0 0 25px rgba(229,9,20,0.3);
+
+    z-index:2;
+
+    animation:fadeDown 1s ease;
 }
+
+
+header p{
+
+    font-size:1.3rem;
+
+    opacity:0.9;
+
+    max-width:700px;
+
+    line-height:1.6;
+
+    color:#f1f1f1;
+
+    z-index:2;
+
+    animation:fadeUp 1.2s ease;
+}
+
 
 section{
-  padding:40px;
-  max-width:1200px;
-  margin:auto;
+
+    padding:50px 30px;
+
+    max-width:1200px;
+
+    margin:auto;
 }
+
 
 h2{
-  color:#e50914;
+
+    color:#E50914;
+
+    font-size:2rem;
+
+    margin-bottom:25px;
+
+    font-weight:700;
 }
+
 
 .card{
-  background:#1f1f1f;
-  padding:25px;
-  border-radius:12px;
-  margin-bottom:30px;
-  box-shadow:0 0 10px rgba(0,0,0,0.4);
+
+    background:#1c1c1c;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+
+    border:1px solid rgba(255,255,255,0.05);
+
+    transition:0.3s ease;
 }
 
-#grafico01{
-  background:white;
-  border-radius:10px;
-  padding:10px;
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.6);
+
+    border-color:rgba(229,9,20,0.3);
+}
+
+
+.card p{
+
+    line-height:1.8;
+
+    color:#d8d8d8;
+
+    font-size:1rem;
 }
 
 ul{
-  line-height:2;
+
+    line-height:2;
 }
 
+
+#grafico01{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    overflow:hidden;
+}
+
+
 footer{
-  text-align:center;
-  padding:20px;
-  background:#000;
-  margin-top:30px;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:#000;
+
+    margin-top:50px;
+
+    color:#999;
+
+    border-top:1px solid rgba(255,255,255,0.05);
+}
+
+
+@keyframes fadeDown {
+
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+@media(max-width:768px){
+
+    header{
+
+        height:300px;
+
+        padding:20px;
+    }
+
+    header h1{
+
+        font-size:2.8rem;
+    }
+
+    header p{
+
+        font-size:1rem;
+    }
+
+    section{
+
+        padding:30px 20px;
+    }
+
+    .card{
+
+        padding:25px;
+    }
+
+    h2{
+
+        font-size:1.6rem;
+    }
 }
