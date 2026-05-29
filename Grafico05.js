@@ -10,6 +10,7 @@ var grafico05 = {
   },
 
   transform: [
+
     {
       aggregate: [
         {
@@ -18,7 +19,27 @@ var grafico05 = {
         }
       ],
       groupby: ["country"]
+    },
+
+    {
+      window: [
+        {
+          op: "rank",
+          as: "rank"
+        }
+      ],
+      sort: [
+        {
+          field: "total",
+          order: "descending"
+        }
+      ]
+    },
+
+    {
+      filter: "datum.rank <= 10"
     }
+
   ],
 
   mark: {
@@ -28,17 +49,30 @@ var grafico05 = {
 
   encoding: {
 
-    x: {
+    y: {
       field: "country",
       type: "nominal",
-      sort: "-y",
+      sort: "-x",
       title: "País"
     },
 
-    y: {
+    x: {
       field: "total",
       type: "quantitative",
       title: "Quantidade"
-    }
+    },
+
+    tooltip: [
+      {
+        field: "country",
+        type: "nominal",
+        title: "País"
+      },
+      {
+        field: "total",
+        type: "quantitative",
+        title: "Quantidade"
+      }
+    ]
   }
 };
