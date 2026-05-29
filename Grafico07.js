@@ -3,13 +3,14 @@ var grafico07 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 
   width: 700,
-  height: 400,
+  height: 500,
 
   data: {
     url: "https://raw.githubusercontent.com/huanngomes/projeto-netflix-ads/refs/heads/main/netflix_titles_limpo.csv"
   },
 
   transform: [
+
     {
       aggregate: [
         {
@@ -18,7 +19,27 @@ var grafico07 = {
         }
       ],
       groupby: ["listed_in"]
+    },
+
+    {
+      window: [
+        {
+          op: "rank",
+          as: "rank"
+        }
+      ],
+      sort: [
+        {
+          field: "total",
+          order: "descending"
+        }
+      ]
+    },
+
+    {
+      filter: "datum.rank <= 10"
     }
+
   ],
 
   mark: {
@@ -28,17 +49,30 @@ var grafico07 = {
 
   encoding: {
 
-    x: {
+    y: {
       field: "listed_in",
       type: "nominal",
-      sort: "-y",
+      sort: "-x",
       title: "Categoria"
     },
 
-    y: {
+    x: {
       field: "total",
       type: "quantitative",
       title: "Quantidade"
-    }
+    },
+
+    tooltip: [
+      {
+        field: "listed_in",
+        type: "nominal",
+        title: "Categoria"
+      },
+      {
+        field: "total",
+        type: "quantitative",
+        title: "Quantidade"
+      }
+    ]
   }
 };
